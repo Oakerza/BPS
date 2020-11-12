@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/myShop_toolbar_toMain"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Go to Main Page"
+        app:showAsAction="always">
+
+    </item>
+
+    <item
+        android:title="item2"
+        app:showAsAction="never">
+        <item
+            android:id="@+id/myShop_toolbar_profile"
+            android:title="My Profile" />
+
+        <item
+            android:id="@+id/myShop_toolbar_aboutApp"
+            android:title="About this app" />
+
+        <item
+            android:id="@+id/myShop_toolbar_logout"
+            android:title="Logout" />
+
+    </item>
+
+
+</menu>

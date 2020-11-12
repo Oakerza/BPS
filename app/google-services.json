@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "94138078407",
+    "firebase_url": "https://beaconps-48abb.firebaseio.com",
+    "project_id": "beaconps-48abb",
+    "storage_bucket": "beaconps-48abb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94138078407:android:6e81f57e1154c889825ae2",
+        "android_client_info": {
+          "package_name": "com.example.bps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94138078407-dqri9hs23aremit11k8cl9215tu83nsd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBFmAAUeoWal6wXegg4wiPmpE1AltnWqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94138078407-dqri9hs23aremit11k8cl9215tu83nsd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

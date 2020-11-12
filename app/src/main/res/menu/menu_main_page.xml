@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main_toolbar_reFresh"
+        android:icon="@drawable/ic_baseline_refresh_24"
+        android:title="Refresh"
+        app:showAsAction="ifRoom">
+
+    </item>
+
+    <item
+        android:id="@+id/main_toolbar_category"
+        android:icon="@drawable/ic_baseline_category_24"
+        android:title="Choose Category"
+        app:showAsAction="ifRoom">'
+
+    </item>
+
+
+    <item
+        android:title="item2"
+        app:showAsAction="always">
+
+        <item
+            android:id="@+id/main_toolbar_login"
+            android:title="Login" />
+
+        <item
+            android:id="@+id/main_toolbar_settings"
+            android:title="Setting" />
+
+        <item
+            android:id="@+id/main_toolbar_about"
+            android:title="About this app" />
+
+
+    </item>
+
+
+</menu>
