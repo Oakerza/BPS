@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myStoreItem">
+    tools:context=".MyStoreItem">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,6 +18,17 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="60dp" />
+
+        <Button
+            android:id="@+id/myStoreItem_button_image"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/myStoreItem_editText_price"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="0dp"
+            android:text="เปลี่ยนรูปภาพ"
+            android:textSize="16sp"/>
 
         <EditText
             android:id="@+id/myStoreItem_editText_name"
@@ -52,7 +63,7 @@
             android:layout_marginBottom="-12dp"
             android:layout_toStartOf="@+id/myStoreItem_text_unit"
             android:layout_toEndOf="@+id/myStoreItem_text_price"
-            android:hint="0.00"
+            android:hint="0"
             android:inputType="number"
             android:textAlignment="textEnd"
             android:textSize="20sp" />
@@ -80,6 +91,16 @@
             android:layout_marginEnd="20dp"
             android:hint="รายละเอียด"
             android:textSize="18sp"/>
+
+        <ProgressBar
+            android:id="@+id/myStoreItem_progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/myStoreItem_button_update"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp" />
 
         <Button
             android:id="@+id/myStoreItem_button_update"

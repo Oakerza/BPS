@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bps.R;
 import com.example.bps.model.StoreItemDetail;
-import com.example.bps.myStoreItem;
+import com.example.bps.MyStoreItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -35,25 +36,32 @@ public class MyStoreItemRecyclerAdapter extends RecyclerView.Adapter<MyStoreItem
 
     @Override
     public void onBindViewHolder(@NonNull MyStoreItemRecyclerAdapter.MainViewHolder holder, int position) {
-        holder.itemName.setText(storeItemDetailList.get(position).getItemName());
-        holder.itemImage.setImageResource(storeItemDetailList.get(position).getImageUrl());
+        StoreItemDetail storeItemDetail = storeItemDetailList.get(position);
+        holder.itemName.setText(storeItemDetail.getItemName());
         if (storeItemDetailList.size()-1 == position) {
             holder.itemPrice.setText("");
             holder.textView1.setText("");
             holder.textView2.setText("");
+            holder.itemImage.setImageResource(R.drawable.ic_baseline_add_circle_outline_24);
         }else{
-            holder.itemPrice.setText(String.valueOf(storeItemDetailList.get(position).getItemPrice()));
+            holder.itemPrice.setText(String.valueOf(storeItemDetail.getItemPrice()));
+            Picasso.with(context)
+                    .load(storeItemDetail.getImageUrl())
+                    .placeholder(R.mipmap.ic_launcher)
+                    .fit()
+                    .centerCrop()
+                    .into(holder.itemImage);
         }
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, myStoreItem.class);
-                intent.putExtra("ItemName",storeItemDetailList.get(position).getItemName());
-                intent.putExtra("ItemPrice",storeItemDetailList.get(position).getItemPrice());
-                intent.putExtra("ItemImageUrl",storeItemDetailList.get(position).getImageUrl());
+                Intent intent = new Intent(context, MyStoreItem.class);
+                intent.putExtra("ItemName",storeItemDetail.getItemName());
+                intent.putExtra("ItemPrice",storeItemDetail.getItemPrice());
                 intent.putExtra("LastItem",storeItemDetailList.size() - position - 1);
                 if (storeItemDetailList.size() - 1 != position) {
-                    intent.putExtra("ItemId", storeItemDetailList.get(position).getItemId());
+                    intent.putExtra("ItemId", storeItemDetail.getItemId());
+                    intent.putExtra("ItemImageUrl",storeItemDetail.getImageUrl());
                 }
                 context.startActivity(intent);
             }

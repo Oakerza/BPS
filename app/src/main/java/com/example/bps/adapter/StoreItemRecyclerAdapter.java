@@ -12,9 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bps.MyStoreItem;
 import com.example.bps.R;
-import com.example.bps.foundStoreItem;
 import com.example.bps.model.StoreItemDetail;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,21 +32,28 @@ public class StoreItemRecyclerAdapter extends RecyclerView.Adapter<StoreItemRecy
     @NonNull
     @Override
     public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MainViewHolder(LayoutInflater.from(context).inflate(R.layout.store_item_card, parent,false));
+        return new MainViewHolder(LayoutInflater.from(context).inflate(R.layout.store_item_card, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
-        holder.itemName.setText(storeItemDetailList.get(position).getItemName());
-        holder.itemPrice.setText(storeItemDetailList.get(position).getItemPrice().toString());
-        holder.itemImage.setImageResource(storeItemDetailList.get(position).getImageUrl());
+        StoreItemDetail storeItemDetail = storeItemDetailList.get(position);
+        holder.itemName.setText(storeItemDetail.getItemName());
+
+        holder.itemPrice.setText(String.valueOf(storeItemDetail.getItemPrice()));
+        Picasso.with(context)
+                .load(storeItemDetail.getImageUrl())
+                .placeholder(R.mipmap.ic_launcher)
+                .fit()
+                .centerCrop()
+                .into(holder.itemImage);
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, foundStoreItem.class);
-                intent.putExtra("ItemName",storeItemDetailList.get(position).getItemName());
-                intent.putExtra("ItemPrice",storeItemDetailList.get(position).getItemPrice());
-                intent.putExtra("ItemImageUrl",storeItemDetailList.get(position).getImageUrl());
+                Intent intent = new Intent(context, MyStoreItem.class);
+                intent.putExtra("ItemName", storeItemDetail.getItemName());
+                intent.putExtra("ItemPrice", storeItemDetail.getItemPrice());
                 context.startActivity(intent);
             }
         });

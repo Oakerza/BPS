@@ -2,11 +2,9 @@ package com.example.bps;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,20 +55,6 @@ public class myStore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_store);
 
-        List<StoreItemDetail> storeItemDetails = new ArrayList<>();
-        storeItemDetails.add(new StoreItemDetail("Item1", 10.00, "ข้อมูล", R.drawable.item_clipart1));
-        storeItemDetails.add(new StoreItemDetail("Item2", 12.50, "ข้อมูล", R.drawable.item_clipart2));
-        storeItemDetails.add(new StoreItemDetail("Item3", 20.00, "ข้อมูล", R.drawable.item_clipart3));
-        storeItemDetails.add(new StoreItemDetail("Item4", 15.00, "ข้อมูล", R.drawable.item_clipart4));
-        storeItemDetails.add(new StoreItemDetail("Item5", 13.25, "ข้อมูล", R.drawable.item_clipart5));
-        storeItemDetails.add(new StoreItemDetail("Item6", 30.00, "ข้อมูล", R.drawable.item_clipart1));
-        storeItemDetails.add(new StoreItemDetail("Item7", 40.00, "ข้อมูล", R.drawable.item_clipart2));
-        storeItemDetails.add(new StoreItemDetail("Item8", 100.00, "ข้อมูล", R.drawable.item_clipart3));
-        storeItemDetails.add(new StoreItemDetail("Item9", 35.00, "ข้อมูล", R.drawable.item_clipart4));
-        storeItemDetails.add(new StoreItemDetail("Item10", 45.00, "ข้อมูล", R.drawable.item_clipart5));
-
-        Log.d("size", String.valueOf(storeItemDetails.size()));
-
         toolbar = findViewById(R.id.myStore_toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -97,34 +81,6 @@ public class myStore extends AppCompatActivity {
                 .collection("users").document(stringUserID);
         CollectionReference goodsCollectionReference = userDocumentReference.collection("goods");
 
-        buttonDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goodsCollectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            documentSnapshot.getReference().delete();
-                        }
-                    }
-                });
-            }
-        });
-        buttonCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (int i = 0; i < storeItemDetails.size(); i++) {
-                    goodsCollectionReference.add(storeItemDetails.get(i))
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("create error", e.toString());
-                                }
-                            });
-                }
-            }
-        });
-
         goodsCollectionReference.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -137,7 +93,8 @@ public class myStore extends AppCompatActivity {
                             storeItemDetails1.add(currentStoreItemDetail);
                             n = n + 1;
                         }
-                        StoreItemDetail currentStoreItemDetail = new StoreItemDetail("เพิ่มสินค้า", 00.00, "ข้อมูล", R.drawable.ic_baseline_add_circle_outline_24);
+                        StoreItemDetail currentStoreItemDetail = new StoreItemDetail("เพิ่มสินค้า", 0, "ข้อมูล",
+                                String.valueOf(R.drawable.ic_baseline_add_circle_outline_24));
                         storeItemDetails1.add(currentStoreItemDetail);
                         setItemRecycler(storeItemDetails1);
                     }
@@ -145,7 +102,8 @@ public class myStore extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 List<StoreItemDetail> storeItemDetails1 = new ArrayList<>();
-                StoreItemDetail currentStoreItemDetail = new StoreItemDetail("เพิ่มสินค้า", 00.00, "ข้อมูล", R.drawable.ic_baseline_add_circle_outline_24);
+                StoreItemDetail currentStoreItemDetail = new StoreItemDetail("เพิ่มสินค้า", 0, "ข้อมูล",
+                        String.valueOf(R.drawable.ic_baseline_add_circle_outline_24));
                 storeItemDetails1.add(currentStoreItemDetail);
                 setItemRecycler(storeItemDetails1);
             }

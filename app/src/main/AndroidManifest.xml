@@ -14,7 +14,7 @@
         <activity android:name=".myCart" />
         <activity android:name=".foundStoreItem" />
         <activity android:name=".foundStore" />
-        <activity android:name=".myStoreItem" />
+        <activity android:name=".MyStoreItem" />
         <activity android:name=".myStoreProfile" />
         <activity android:name=".myStore" />
         <activity android:name=".register" />

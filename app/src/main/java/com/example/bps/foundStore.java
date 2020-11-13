@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bps.adapter.StoreItemRecyclerAdapter;
 import com.example.bps.model.StoreItemDetail;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class foundStore extends AppCompatActivity {
@@ -44,20 +43,6 @@ public class foundStore extends AppCompatActivity {
         storeName.setText(stringName);
         storePromotion = findViewById(R.id.foundStore_promotion);
         storePromotion.setImageResource(R.drawable.on_sale);
-
-        List<StoreItemDetail> storeItemDetails = new ArrayList<>();
-        storeItemDetails.add(new StoreItemDetail("Item1", 10.00, "ข้อมูล", R.drawable.item_clipart1));
-        storeItemDetails.add(new StoreItemDetail("Item2", 12.50, "ข้อมูล", R.drawable.item_clipart2));
-        storeItemDetails.add(new StoreItemDetail("Item3", 20.00, "ข้อมูล", R.drawable.item_clipart3));
-        storeItemDetails.add(new StoreItemDetail("Item4", 15.00, "ข้อมูล", R.drawable.item_clipart4));
-        storeItemDetails.add(new StoreItemDetail("Item5", 13.25, "ข้อมูล", R.drawable.item_clipart5));
-        storeItemDetails.add(new StoreItemDetail("Item6", 30.00, "ข้อมูล", R.drawable.item_clipart1));
-        storeItemDetails.add(new StoreItemDetail("Item7", 40.00, "ข้อมูล", R.drawable.item_clipart2));
-        storeItemDetails.add(new StoreItemDetail("Item8", 100.00, "ข้อมูล", R.drawable.item_clipart3));
-        storeItemDetails.add(new StoreItemDetail("Item9", 35.00, "ข้อมูล", R.drawable.item_clipart4));
-        storeItemDetails.add(new StoreItemDetail("Item10", 45.00, "ข้อมูล", R.drawable.item_clipart5));
-
-        setItemRecycler(storeItemDetails);
 
         toolbar = findViewById(R.id.foundStore_toolbar);
         setSupportActionBar(toolbar);
