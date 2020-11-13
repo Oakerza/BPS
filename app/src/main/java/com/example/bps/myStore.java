@@ -34,6 +34,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -43,8 +44,8 @@ public class myStore extends AppCompatActivity {
 
     private RecyclerView myStoreItemRecycler;
     private MyStoreItemRecyclerAdapter adapter;
-    private TextView textViewUserName, textViewEmail;
-    private ImageView userImage,promotion;
+    private TextView textViewUserName, textViewEmail, textViewState;
+    private ImageView userImage, promotion;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private String stringUserID;
@@ -68,20 +69,19 @@ public class myStore extends AppCompatActivity {
         storeItemDetails.add(new StoreItemDetail("Item9", 35.00, 1, R.drawable.item_clipart4));
         storeItemDetails.add(new StoreItemDetail("Item10", 45.00, 1, R.drawable.item_clipart5));
 
-        setItemRecycler(storeItemDetails);
-
-        Log.d("size",String.valueOf(storeItemDetails.size()));
+        Log.d("size", String.valueOf(storeItemDetails.size()));
 
         toolbar = findViewById(R.id.myStore_toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null){
+        if (actionBar != null) {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         textViewUserName = findViewById(R.id.myStore_text_userName);
         textViewEmail = findViewById(R.id.myStore_text_detail);
+        textViewState = findViewById(R.id.myStore_text_state);
         userImage = findViewById(R.id.myStore_profile);
         userImage.setImageResource(R.drawable.user_image);
         promotion = findViewById(R.id.myStore_promotion);
@@ -103,7 +103,7 @@ public class myStore extends AppCompatActivity {
                 goodsCollectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             documentSnapshot.getReference().delete();
                         }
                     }
@@ -113,7 +113,7 @@ public class myStore extends AppCompatActivity {
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0 ; i < storeItemDetails.size() ; i++){
+                for (int i = 0; i < storeItemDetails.size(); i++) {
                     goodsCollectionReference.add(storeItemDetails.get(i))
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -125,14 +125,37 @@ public class myStore extends AppCompatActivity {
             }
         });
 
+        goodsCollectionReference.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<StoreItemDetail> storeItemDetails1 = new ArrayList<>();
+                        int n = 0;
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            StoreItemDetail currentStoreItemDetail = documentSnapshot.toObject(StoreItemDetail.class);
+                            storeItemDetails1.add(currentStoreItemDetail);
+                            n = n+1;
+                        }
+                        if (n == 0) {
+                            textViewState.setText("ไม่พบสินค้า");
+                        }
+                        setItemRecycler(storeItemDetails1);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                textViewState.setText("ไม่พบสินค้า");
+            }
+        });
+
         userDocumentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserProfile userProfile = documentSnapshot.toObject(UserProfile.class);
-                if (userProfile.getUserName() == null){
+                if (userProfile.getUserName() == null) {
                     userProfile.setUserName("-");
                 }
-                if (userProfile.getEmail() == null){
+                if (userProfile.getEmail() == null) {
                     userProfile.setEmail("-");
 
                 }
@@ -144,9 +167,9 @@ public class myStore extends AppCompatActivity {
 
     private void setItemRecycler(List<StoreItemDetail> storeItemDetails) {
         myStoreItemRecycler = findViewById(R.id.myStore_recycler);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,3);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
         myStoreItemRecycler.setLayoutManager(layoutManager);
-        adapter = new MyStoreItemRecyclerAdapter(this,storeItemDetails);
+        adapter = new MyStoreItemRecyclerAdapter(this, storeItemDetails);
         myStoreItemRecycler.setAdapter(adapter);
     }
 
@@ -167,12 +190,12 @@ public class myStore extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.myShop_toolbar_toMain:
-                intent = new Intent(this,MainActivity.class);
+                intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return false;
             case R.id.myShop_toolbar_profile:
-                intent = new Intent(this,myStoreProfile.class);
+                intent = new Intent(this, myStoreProfile.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return false;

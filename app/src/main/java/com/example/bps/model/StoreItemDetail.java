@@ -7,6 +7,10 @@ public class StoreItemDetail {
     Integer itemId;
     Integer imageUrl;
 
+    public StoreItemDetail(){
+
+    }
+
     public StoreItemDetail(String itemName, Double itemPrice, Integer itemId, Integer imageUrl) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;

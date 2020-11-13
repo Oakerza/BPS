@@ -85,6 +85,14 @@
             android:layout_below="@id/myStore_promotion"
             android:text="create"/>
 
+        <TextView
+            android:id="@+id/myStore_text_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/myStore_delete"
+            android:layout_margin="10dp"
+            android:textAlignment="center"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myStore_recycler"
             android:layout_width="match_parent"
