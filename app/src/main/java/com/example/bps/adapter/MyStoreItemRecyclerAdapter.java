@@ -36,8 +36,14 @@ public class MyStoreItemRecyclerAdapter extends RecyclerView.Adapter<MyStoreItem
     @Override
     public void onBindViewHolder(@NonNull MyStoreItemRecyclerAdapter.MainViewHolder holder, int position) {
         holder.itemName.setText(storeItemDetailList.get(position).getItemName());
-        holder.itemPrice.setText(storeItemDetailList.get(position).getItemPrice().toString());
         holder.itemImage.setImageResource(storeItemDetailList.get(position).getImageUrl());
+        if (storeItemDetailList.size()-1 == position) {
+            holder.itemPrice.setText("");
+            holder.textView1.setText("");
+            holder.textView2.setText("");
+        }else{
+            holder.itemPrice.setText(String.valueOf(storeItemDetailList.get(position).getItemPrice()));
+        }
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +51,10 @@ public class MyStoreItemRecyclerAdapter extends RecyclerView.Adapter<MyStoreItem
                 intent.putExtra("ItemName",storeItemDetailList.get(position).getItemName());
                 intent.putExtra("ItemPrice",storeItemDetailList.get(position).getItemPrice());
                 intent.putExtra("ItemImageUrl",storeItemDetailList.get(position).getImageUrl());
+                intent.putExtra("LastItem",storeItemDetailList.size() - position - 1);
+                if (storeItemDetailList.size() - 1 != position) {
+                    intent.putExtra("ItemId", storeItemDetailList.get(position).getItemId());
+                }
                 context.startActivity(intent);
             }
         });
@@ -57,8 +67,7 @@ public class MyStoreItemRecyclerAdapter extends RecyclerView.Adapter<MyStoreItem
 
     public static final class MainViewHolder extends RecyclerView.ViewHolder {
 
-        TextView itemName;
-        TextView itemPrice;
+        TextView itemName, itemPrice, textView1, textView2;
         ImageView itemImage;
         CardView cardView;
 
@@ -67,6 +76,8 @@ public class MyStoreItemRecyclerAdapter extends RecyclerView.Adapter<MyStoreItem
             itemName = itemView.findViewById(R.id.storeItem_itemName);
             itemPrice = itemView.findViewById(R.id.storeItem_itemPrice);
             itemImage = itemView.findViewById(R.id.storeItem_itemImage);
+            textView1 = itemView.findViewById(R.id.storeItem_textView1);
+            textView2 = itemView.findViewById(R.id.storeItem_textView2);
             cardView = (CardView) itemView.findViewById(R.id.storeItem_cardView);
         }
     }

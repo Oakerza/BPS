@@ -58,16 +58,16 @@ public class myStore extends AppCompatActivity {
         setContentView(R.layout.activity_my_store);
 
         List<StoreItemDetail> storeItemDetails = new ArrayList<>();
-        storeItemDetails.add(new StoreItemDetail("Item1", 10.00, 1, R.drawable.item_clipart1));
-        storeItemDetails.add(new StoreItemDetail("Item2", 12.50, 1, R.drawable.item_clipart2));
-        storeItemDetails.add(new StoreItemDetail("Item3", 20.00, 1, R.drawable.item_clipart3));
-        storeItemDetails.add(new StoreItemDetail("Item4", 15.00, 1, R.drawable.item_clipart4));
-        storeItemDetails.add(new StoreItemDetail("Item5", 13.25, 1, R.drawable.item_clipart5));
-        storeItemDetails.add(new StoreItemDetail("Item6", 30.00, 1, R.drawable.item_clipart1));
-        storeItemDetails.add(new StoreItemDetail("Item7", 40.00, 1, R.drawable.item_clipart2));
-        storeItemDetails.add(new StoreItemDetail("Item8", 100.00, 1, R.drawable.item_clipart3));
-        storeItemDetails.add(new StoreItemDetail("Item9", 35.00, 1, R.drawable.item_clipart4));
-        storeItemDetails.add(new StoreItemDetail("Item10", 45.00, 1, R.drawable.item_clipart5));
+        storeItemDetails.add(new StoreItemDetail("Item1", 10.00, "ข้อมูล", R.drawable.item_clipart1));
+        storeItemDetails.add(new StoreItemDetail("Item2", 12.50, "ข้อมูล", R.drawable.item_clipart2));
+        storeItemDetails.add(new StoreItemDetail("Item3", 20.00, "ข้อมูล", R.drawable.item_clipart3));
+        storeItemDetails.add(new StoreItemDetail("Item4", 15.00, "ข้อมูล", R.drawable.item_clipart4));
+        storeItemDetails.add(new StoreItemDetail("Item5", 13.25, "ข้อมูล", R.drawable.item_clipart5));
+        storeItemDetails.add(new StoreItemDetail("Item6", 30.00, "ข้อมูล", R.drawable.item_clipart1));
+        storeItemDetails.add(new StoreItemDetail("Item7", 40.00, "ข้อมูล", R.drawable.item_clipart2));
+        storeItemDetails.add(new StoreItemDetail("Item8", 100.00, "ข้อมูล", R.drawable.item_clipart3));
+        storeItemDetails.add(new StoreItemDetail("Item9", 35.00, "ข้อมูล", R.drawable.item_clipart4));
+        storeItemDetails.add(new StoreItemDetail("Item10", 45.00, "ข้อมูล", R.drawable.item_clipart5));
 
         Log.d("size", String.valueOf(storeItemDetails.size()));
 
@@ -94,7 +94,7 @@ public class myStore extends AppCompatActivity {
         stringUserID = firebaseAuth.getCurrentUser().getUid();
 
         DocumentReference userDocumentReference = firebaseFirestore
-                .collection("user").document(stringUserID);
+                .collection("users").document(stringUserID);
         CollectionReference goodsCollectionReference = userDocumentReference.collection("goods");
 
         buttonDelete.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +118,7 @@ public class myStore extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Log.d("create error", e.getMessage());
+                                    Log.d("create error", e.toString());
                                 }
                             });
                 }
@@ -133,18 +133,21 @@ public class myStore extends AppCompatActivity {
                         int n = 0;
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             StoreItemDetail currentStoreItemDetail = documentSnapshot.toObject(StoreItemDetail.class);
+                            currentStoreItemDetail.setItemId(documentSnapshot.getId());
                             storeItemDetails1.add(currentStoreItemDetail);
-                            n = n+1;
+                            n = n + 1;
                         }
-                        if (n == 0) {
-                            textViewState.setText("ไม่พบสินค้า");
-                        }
+                        StoreItemDetail currentStoreItemDetail = new StoreItemDetail("เพิ่มสินค้า", 00.00, "ข้อมูล", R.drawable.ic_baseline_add_circle_outline_24);
+                        storeItemDetails1.add(currentStoreItemDetail);
                         setItemRecycler(storeItemDetails1);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                textViewState.setText("ไม่พบสินค้า");
+                List<StoreItemDetail> storeItemDetails1 = new ArrayList<>();
+                StoreItemDetail currentStoreItemDetail = new StoreItemDetail("เพิ่มสินค้า", 00.00, "ข้อมูล", R.drawable.ic_baseline_add_circle_outline_24);
+                storeItemDetails1.add(currentStoreItemDetail);
+                setItemRecycler(storeItemDetails1);
             }
         });
 

@@ -116,7 +116,7 @@ public class register extends AppCompatActivity {
                                                 Toast.LENGTH_SHORT).show();
                                         stringUserID = firebaseAuth.getCurrentUser().getUid();
                                         DocumentReference documentReference = firebaseFirestore
-                                                .collection("user")
+                                                .collection("users")
                                                 .document(stringUserID);
                                         UserProfile userProfile = new UserProfile(stringUserName,
                                                 stringEmail);

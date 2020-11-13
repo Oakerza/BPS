@@ -104,7 +104,7 @@ public class logIn extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         CollectionReference collectionReference = firebaseFirestore
-                .collection("user");
+                .collection("users");
 
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -253,7 +253,7 @@ public class logIn extends AppCompatActivity {
 
     private void saveUserProfile(FirebaseUser user) {
         CollectionReference collectionReference = firebaseFirestore
-                .collection("user");
+                .collection("users");
         collectionReference.document(user.getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override

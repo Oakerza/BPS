@@ -4,17 +4,18 @@ public class StoreItemDetail {
 
     String itemName;
     Double itemPrice;
-    Integer itemId;
+    String itemInfo;
+    String itemId;
     Integer imageUrl;
 
     public StoreItemDetail(){
 
     }
 
-    public StoreItemDetail(String itemName, Double itemPrice, Integer itemId, Integer imageUrl) {
+    public StoreItemDetail(String itemName, Double itemPrice, String itemInfo, Integer imageUrl) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-        this.itemId = itemId;
+        this.itemInfo = itemInfo;
         this.imageUrl = imageUrl;
     }
 
@@ -34,11 +35,11 @@ public class StoreItemDetail {
         this.itemPrice = itemPrice;
     }
 
-    public Integer getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(Integer itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 
@@ -48,5 +49,13 @@ public class StoreItemDetail {
 
     public void setImageUrl(Integer imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getItemInfo() {
+        return itemInfo;
+    }
+
+    public void setItemInfo(String itemInfo) {
+        this.itemInfo = itemInfo;
     }
 }
