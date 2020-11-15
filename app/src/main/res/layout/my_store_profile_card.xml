@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:id="@+id/myStoreProfile_cardView">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/myAccount_card_topic"
+            android:id="@+id/myStoreProfile_card_topic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="หัวข้อ"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_margin="5dp"/>
 
         <EditText
-            android:id="@+id/myAccount_card_detail"
+            android:id="@+id/myStoreProfile_card_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/myAccount_card_topic"
+            android:layout_below="@+id/myStoreProfile_card_topic"
             android:layout_margin="5dp"
-            android:hint="รายละเอียด"/>
+            android:hint="รายละเอียด"
+            android:textSize="18sp"/>
 
     </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

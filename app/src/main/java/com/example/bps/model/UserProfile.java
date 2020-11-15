@@ -1,11 +1,16 @@
-package com.example.bps;
+package com.example.bps.model;
+
+import com.estimote.coresdk.recognition.packets.Beacon;
 
 import java.util.List;
 
 public class UserProfile {
     private String userName;
     private String email;
-    private List<String> uuid;
+    private List<Beacon> beacons;
+    private String detail;
+    private String phone;
+    private String address;
 
     public UserProfile(){
 
@@ -16,10 +21,10 @@ public class UserProfile {
         this.email = email;
     }
 
-    public UserProfile(String userName, String email, List<String> uuid){
+    public UserProfile(String userName, String email, List<Beacon> uuid){
         this.userName = userName;
         this.email = email;
-        this.uuid = uuid;
+        this.beacons = uuid;
     }
 
     public String getUserName() {

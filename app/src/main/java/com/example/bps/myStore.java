@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bps.adapter.MyStoreItemRecyclerAdapter;
 import com.example.bps.model.StoreItemDetail;
+import com.example.bps.model.UserProfile;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;

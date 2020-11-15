@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".myAccount">
 
-    <include
-        android:id="@+id/myAccount_toolbar"
-        layout="@layout/toolbar" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,8 +48,20 @@
             android:id="@+id/myAccount_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/myAccount_button_update"
             android:layout_below="@+id/myAccount_icon"
-            android:layout_margin="5dp"/>
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp" />
+
+        <Button
+            android:id="@+id/myAccount_button_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:text="บันทึกการเปลียนแปลง"/>
 
     </RelativeLayout>
 
