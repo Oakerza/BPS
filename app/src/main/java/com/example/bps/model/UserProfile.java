@@ -7,6 +7,7 @@ import java.util.List;
 public class UserProfile {
     private String userName;
     private String email;
+    private String id;
     private List<Beacon> beacons;
     private String detail;
     private String phone;
@@ -42,4 +43,14 @@ public class UserProfile {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
 }
