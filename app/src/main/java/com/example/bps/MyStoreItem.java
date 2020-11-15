@@ -31,6 +31,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -40,7 +41,7 @@ public class MyStoreItem extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
-    private Double price;
+    private int price;
     private ImageView itemImage;
     private EditText itemName, itemPrice, itemDetail;
     private Toolbar toolbar;
@@ -62,7 +63,7 @@ public class MyStoreItem extends AppCompatActivity {
         Intent intent = getIntent();
         String stringName = intent.getExtras().getString("ItemName");
         String stringId = intent.getExtras().getString("ItemId");
-        price = intent.getExtras().getDouble("ItemPrice");
+        price = intent.getExtras().getInt("ItemPrice");
         itemImageUrl = intent.getExtras().getString("ItemImageUrl");
         int lastItem = intent.getExtras().getInt("LastItem");
 
@@ -77,7 +78,7 @@ public class MyStoreItem extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
         if (firebaseAuth.getUid() != null) {
-            if (stringId != null){
+            if (stringId != null) {
                 documentReference = FirebaseFirestore.getInstance()
                         .collection("users")
                         .document(firebaseAuth.getUid())
@@ -133,12 +134,12 @@ public class MyStoreItem extends AppCompatActivity {
             public void onClick(View view) {
                 if (uploadTask != null && uploadTask.isInProgress()) {
                     Toast.makeText(MyStoreItem.this, "กำลังบันทึก", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     if (lastItem == 0) {
-                        Log.d("update","create Button");
+                        Log.d("update", "create Button");
                         createItem();
                     } else {
-                        Log.d("update","update Button");
+                        Log.d("update", "update Button");
                         updateItem();
                     }
                 }
@@ -148,11 +149,11 @@ public class MyStoreItem extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (lastItem == 0){
-                    Log.d("update","finish Button");
+                if (lastItem == 0) {
+                    Log.d("update", "finish Button");
                     finish();
-                }else {
-                    Log.d("update","delete Button");
+                } else {
+                    Log.d("update", "delete Button");
                     documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -184,7 +185,7 @@ public class MyStoreItem extends AppCompatActivity {
 
     private void updateItem() {
         if (imageUri != null) {
-            Log.d("update","have uri");
+            Log.d("update", "have uri");
             firebaseStorage.getReferenceFromUrl(itemImageUrl).delete();
             StorageReference storageReference = firebaseStorage.getReference().child("users/images/goods/" +
                     System.currentTimeMillis() + "." + getFileExtension(imageUri));
@@ -217,14 +218,35 @@ public class MyStoreItem extends AppCompatActivity {
                                 }
                             });
                         }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            double progress = (100.0 * snapshot.getBytesTransferred() /
+                                    snapshot.getTotalByteCount());
+                            progressBar.setProgress((int) progress);
+                        }
+                    });
+        }else{
+            StoreItemDetail currentStoreItemDetail = new StoreItemDetail();
+            currentStoreItemDetail.setItemName(itemName.getText().toString());
+            currentStoreItemDetail.setItemPrice(Integer.parseInt(itemPrice.getText().toString()));
+            currentStoreItemDetail.setItemInfo(itemDetail.getText().toString());
+            currentStoreItemDetail.setImageUrl(itemImageUrl);
+            documentReference.set(currentStoreItemDetail)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(MyStoreItem.this, "บันทึกสำเร็จ", Toast.LENGTH_SHORT).show();
+                        }
                     });
         }
     }
 
     private void createItem() {
-        Log.d("update","currentStoreItemDetail");
+        Log.d("update", "currentStoreItemDetail");
         if (imageUri != null) {
-            Log.d("update","have uri");
+            Log.d("update", "have uri");
             StorageReference storageReference = firebaseStorage.getReference().child("users/images/goods/" +
                     System.currentTimeMillis() + "." + getFileExtension(imageUri));
             uploadTask = storageReference.putFile(imageUri)
@@ -244,9 +266,9 @@ public class MyStoreItem extends AppCompatActivity {
                                     StoreItemDetail currentStoreItemDetail = new StoreItemDetail();
                                     currentStoreItemDetail.setItemName(itemName.getText().toString());
                                     int value;
-                                    if (itemPrice.getText().toString() != null){
+                                    if (itemPrice.getText().toString() != null) {
                                         value = Integer.parseInt(itemPrice.getText().toString());
-                                    }else{
+                                    } else {
                                         value = 0;
                                     }
                                     currentStoreItemDetail.setItemPrice(value);
@@ -261,6 +283,14 @@ public class MyStoreItem extends AppCompatActivity {
                                             });
                                 }
                             });
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            double progress = (100.0 * snapshot.getBytesTransferred() /
+                                    snapshot.getTotalByteCount());
+                            progressBar.setProgress((int) progress);
                         }
                     });
         }

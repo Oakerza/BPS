@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,13 +41,12 @@ public class myStore extends AppCompatActivity {
 
     private RecyclerView myStoreItemRecycler;
     private MyStoreItemRecyclerAdapter adapter;
-    private TextView textViewUserName, textViewEmail, textViewState;
-    private ImageView userImage, promotion;
+    private TextView textViewUserName, textViewEmail;
+    private ImageView userImage;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private String stringUserID;
     private Toolbar toolbar;
-    private Button buttonDelete, buttonCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +63,8 @@ public class myStore extends AppCompatActivity {
 
         textViewUserName = findViewById(R.id.myStore_text_userName);
         textViewEmail = findViewById(R.id.myStore_text_detail);
-        textViewState = findViewById(R.id.myStore_text_state);
         userImage = findViewById(R.id.myStore_profile);
         userImage.setImageResource(R.drawable.user_image);
-        promotion = findViewById(R.id.myStore_promotion);
-        promotion.setImageResource(R.drawable.on_sale);
-        buttonDelete = findViewById(R.id.myStore_delete);
-        buttonCreate = findViewById(R.id.myStore_create);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -86,12 +79,10 @@ public class myStore extends AppCompatActivity {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         List<StoreItemDetail> storeItemDetails1 = new ArrayList<>();
-                        int n = 0;
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             StoreItemDetail currentStoreItemDetail = documentSnapshot.toObject(StoreItemDetail.class);
                             currentStoreItemDetail.setItemId(documentSnapshot.getId());
                             storeItemDetails1.add(currentStoreItemDetail);
-                            n = n + 1;
                         }
                         StoreItemDetail currentStoreItemDetail = new StoreItemDetail("เพิ่มสินค้า", 0, "ข้อมูล",
                                 String.valueOf(R.drawable.ic_baseline_add_circle_outline_24));
@@ -128,7 +119,7 @@ public class myStore extends AppCompatActivity {
 
     private void setItemRecycler(List<StoreItemDetail> storeItemDetails) {
         myStoreItemRecycler = findViewById(R.id.myStore_recycler);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         myStoreItemRecycler.setLayoutManager(layoutManager);
         adapter = new MyStoreItemRecyclerAdapter(this, storeItemDetails);
         myStoreItemRecycler.setAdapter(adapter);

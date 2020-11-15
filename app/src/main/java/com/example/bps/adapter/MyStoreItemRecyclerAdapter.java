@@ -41,7 +41,6 @@ public class MyStoreItemRecyclerAdapter extends RecyclerView.Adapter<MyStoreItem
         if (storeItemDetailList.size()-1 == position) {
             holder.itemPrice.setText("");
             holder.textView1.setText("");
-            holder.textView2.setText("");
             holder.itemImage.setImageResource(R.drawable.ic_baseline_add_circle_outline_24);
         }else{
             holder.itemPrice.setText(String.valueOf(storeItemDetail.getItemPrice()));
@@ -75,7 +74,7 @@ public class MyStoreItemRecyclerAdapter extends RecyclerView.Adapter<MyStoreItem
 
     public static final class MainViewHolder extends RecyclerView.ViewHolder {
 
-        TextView itemName, itemPrice, textView1, textView2;
+        TextView itemName, itemPrice, textView1;
         ImageView itemImage;
         CardView cardView;
 
@@ -85,7 +84,6 @@ public class MyStoreItemRecyclerAdapter extends RecyclerView.Adapter<MyStoreItem
             itemPrice = itemView.findViewById(R.id.storeItem_itemPrice);
             itemImage = itemView.findViewById(R.id.storeItem_itemImage);
             textView1 = itemView.findViewById(R.id.storeItem_textView1);
-            textView2 = itemView.findViewById(R.id.storeItem_textView2);
             cardView = (CardView) itemView.findViewById(R.id.storeItem_cardView);
         }
     }
