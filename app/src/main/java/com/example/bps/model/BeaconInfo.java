@@ -1,12 +1,16 @@
 package com.example.bps.model;
 
+import android.text.format.Time;
+
 public class BeaconInfo {
     private String uuid, major, miner;
+    private Time time;
 
-    public BeaconInfo(String uuid, String major, String miner) {
+    public BeaconInfo(String uuid, String major, String miner, Time time) {
         this.uuid = uuid;
         this.major = major;
         this.miner = miner;
+        this.time = time;
     }
 
     public String getUuid() {
@@ -31,5 +35,13 @@ public class BeaconInfo {
 
     public void setMiner(String miner) {
         this.miner = miner;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 }
