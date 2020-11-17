@@ -35,8 +35,9 @@
             android:layout_toEndOf="@+id/foundStore_profile"
             android:text="found store"
             android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFF"/>
 
         <TextView
             android:id="@+id/foundStore_text_detail"
@@ -50,7 +51,7 @@
             android:layout_toEndOf="@+id/foundStore_profile"
             android:text="detail"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textSize="22dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/foundStore_recycler"

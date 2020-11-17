@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bps.MyStoreItem;
 import com.example.bps.R;
+import com.example.bps.foundStoreItem;
 import com.example.bps.model.StoreItemDetail;
 import com.squareup.picasso.Picasso;
 
@@ -51,7 +52,7 @@ public class StoreItemRecyclerAdapter extends RecyclerView.Adapter<StoreItemRecy
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MyStoreItem.class);
+                Intent intent = new Intent(context, foundStoreItem.class);
                 intent.putExtra("ItemName", storeItemDetail.getItemName());
                 intent.putExtra("ItemPrice", storeItemDetail.getItemPrice());
                 intent.putExtra("ItemId", storeItemDetail.getItemId());
