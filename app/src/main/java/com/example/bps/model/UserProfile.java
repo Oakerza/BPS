@@ -8,8 +8,8 @@ public class UserProfile {
     private String id;
     private String iconUrl;
     private List<String> uuid;
-    private List<String> major;
-    private List<String> miner;
+    private List<Integer> major;
+    private List<Integer> miner;
     private String detail;
     private String phone;
     private String address;
@@ -63,19 +63,19 @@ public class UserProfile {
         this.uuid = uuid;
     }
 
-    public List<String> getMajor() {
+    public List<Integer> getMajor() {
         return major;
     }
 
-    public void setMajor(List<String> major) {
+    public void setMajor(List<Integer> major) {
         this.major = major;
     }
 
-    public List<String> getMiner() {
+    public List<Integer> getMiner() {
         return miner;
     }
 
-    public void setMiner(List<String> miner) {
+    public void setMiner(List<Integer> miner) {
         this.miner = miner;
     }
 

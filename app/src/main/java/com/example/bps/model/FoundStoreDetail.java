@@ -3,12 +3,12 @@ package com.example.bps.model;
 public class FoundStoreDetail {
 
     String storeName;
-    String itemId;
-    Integer imageUrl;
+    String storeId;
+    String imageUrl;
 
-    public FoundStoreDetail(String storeName, String itemId, Integer imageUrl) {
+    public FoundStoreDetail(String storeName, String storeId, String imageUrl) {
         this.storeName = storeName;
-        this.itemId = itemId;
+        this.storeId = storeId;
         this.imageUrl = imageUrl;
     }
 
@@ -20,19 +20,19 @@ public class FoundStoreDetail {
         this.storeName = storeName;
     }
 
-    public String getItemId() {
-        return itemId;
+    public String getStoreId() {
+        return storeId;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
     }
 
-    public Integer getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(Integer imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 }

@@ -16,15 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bps.adapter.FoundStoreRecyclerAdapter;
 import com.example.bps.model.FoundStoreDetail;
-import com.example.bps.model.UserProfile;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private FirebaseAuth firebaseAuth;
 
-    private FirebaseFirestore firebaseFirestore;
+    private CollectionReference collectionReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,24 +40,18 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-        List<FoundStoreDetail> foundStoreDetailList = new ArrayList<>();
-        firebaseFirestore = FirebaseFirestore.getInstance();
-        CollectionReference collectionReference = firebaseFirestore.collection("users");
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (DocumentSnapshot documentSnapshot:queryDocumentSnapshots){
-                    UserProfile currentUserProfile = documentSnapshot.toObject(UserProfile.class);
-                    FoundStoreDetail currentFoundStoreDetail = new FoundStoreDetail(
-                            currentUserProfile.getUserName(),
-                            documentSnapshot.getId(),
-                            R.drawable.user_image);
-                    Log.d("main",currentUserProfile.getUserName() +"\n"+ documentSnapshot.getId());
-                    foundStoreDetailList.add(currentFoundStoreDetail);
-                    setFoundStoreRecycler(foundStoreDetailList);
-                }
-            }
-        });
+        collectionReference = FirebaseFirestore.getInstance().collection("users");
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    private void showStore() {
+        setFoundStoreRecycler(App.foundStoreDetailList);
     }
 
     private void setFoundStoreRecycler(List<FoundStoreDetail> foundStoreDetailList) {
@@ -97,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.main_toolbar_reFresh:
+                Log.d("refresh","refresh");
+                showStore();
                 return true;
             case R.id.main_toolbar_category:
                 return false;

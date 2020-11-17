@@ -1,47 +1,39 @@
 package com.example.bps.model;
 
-import android.text.format.Time;
+import java.util.UUID;
 
 public class BeaconInfo {
-    private String uuid, major, miner;
-    private Time time;
+    private UUID uuid;
+    private int major, miner;
 
-    public BeaconInfo(String uuid, String major, String miner, Time time) {
+    public BeaconInfo(UUID uuid, int major, int miner) {
         this.uuid = uuid;
         this.major = major;
         this.miner = miner;
-        this.time = time;
     }
 
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
-    public String getMajor() {
+    public int getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(int major) {
         this.major = major;
     }
 
-    public String getMiner() {
+    public int getMiner() {
         return miner;
     }
 
-    public void setMiner(String miner) {
+    public void setMiner(int miner) {
         this.miner = miner;
     }
 
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
-    }
 }

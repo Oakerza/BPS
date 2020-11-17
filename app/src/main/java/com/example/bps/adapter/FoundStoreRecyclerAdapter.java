@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bps.R;
 import com.example.bps.foundStore;
 import com.example.bps.model.FoundStoreDetail;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,8 +40,18 @@ public class FoundStoreRecyclerAdapter extends RecyclerView
 
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
-        holder.storeName.setText(foundStoreDetailList.get(position).getStoreName());
-        holder.storeIcon.setImageResource(foundStoreDetailList.get(position).getImageUrl());
+        FoundStoreDetail foundStoreDetail = foundStoreDetailList.get(position);
+        holder.storeName.setText(foundStoreDetail.getStoreName());
+        if(foundStoreDetail.getImageUrl() == null) {
+            holder.storeIcon.setImageResource(R.drawable.user_image);
+        }else{
+            Picasso.with(context)
+                    .load(foundStoreDetail.getImageUrl())
+                    .placeholder(R.mipmap.ic_launcher)
+                    .fit()
+                    .centerCrop()
+                    .into(holder.storeIcon);
+        }
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
