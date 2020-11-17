@@ -2,6 +2,7 @@ package com.example.bps;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,16 +18,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bps.adapter.StoreItemRecyclerAdapter;
 import com.example.bps.model.StoreItemDetail;
+import com.example.bps.model.UserProfile;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
+import org.spongycastle.util.Store;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class foundStore extends AppCompatActivity {
 
     private RecyclerView foundStoreItemRecycler;
     private StoreItemRecyclerAdapter adapter;
-    private ImageView storeIcon, storePromotion;
-    private TextView storeName;
+    private ImageView storeIcon;
+    private TextView storeName, storeDetail;
     private Toolbar toolbar;
+
+    private DocumentReference documentReference;
+    private CollectionReference goodsCollectionReference;
+    private List<StoreItemDetail> storeItemDetailList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +52,13 @@ public class foundStore extends AppCompatActivity {
 
         Intent intent = getIntent();
         String stringName = intent.getExtras().getString("StoreName");
-        int intIconUrl = intent.getExtras().getInt("StoreIconUrl");
+        String storeIconUrl = intent.getExtras().getString("StoreIconUrl");
         String storeId = intent.getExtras().getString("storeID");
 
         storeIcon = findViewById(R.id.foundStore_profile);
-        storeIcon.setImageResource(intIconUrl);
         storeName = findViewById(R.id.foundStore_text_title);
+        storeDetail = findViewById(R.id.foundStore_text_detail);
         storeName.setText(stringName);
-        storePromotion = findViewById(R.id.foundStore_promotion);
-        storePromotion.setImageResource(R.drawable.on_sale);
 
         toolbar = findViewById(R.id.foundStore_toolbar);
         setSupportActionBar(toolbar);
@@ -53,6 +68,60 @@ public class foundStore extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        documentReference = FirebaseFirestore.getInstance()
+                .collection("users")
+                .document(storeId);
+
+        goodsCollectionReference = documentReference.collection("goods");
+
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        UserProfile userProfile = documentSnapshot.toObject(UserProfile.class);
+                        if (userProfile.getIconUrl() == null){
+                            storeIcon.setImageResource(R.drawable.user_image);
+                        }else{
+                            Picasso.with(foundStore.this)
+                                    .load(userProfile.getIconUrl())
+                                    .placeholder(R.mipmap.ic_launcher)
+                                    .fit()
+                                    .centerCrop()
+                                    .into(storeIcon);
+                        }
+                        if (userProfile.getDetail() == null){
+                            storeDetail.setText("");
+                        }else {
+                            storeDetail.setText(userProfile.getDetail());
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("error",e.getMessage());
+                    }
+                });
+
+        storeItemDetailList = new ArrayList<>();
+        goodsCollectionReference.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            StoreItemDetail storeItemDetail = documentSnapshot.toObject(StoreItemDetail.class);
+                            storeItemDetail.setStoreId(storeId);
+                            storeItemDetailList.add(storeItemDetail);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("error",e.getMessage());
+                    }
+                });
+        setItemRecycler(storeItemDetailList);
     }
 
     private void setItemRecycler(List<StoreItemDetail> storeItemDetails) {

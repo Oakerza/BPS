@@ -50,9 +50,9 @@ public class MyStoreItemRecyclerAdapter extends RecyclerView.Adapter<MyStoreItem
                     .fit()
                     .centerCrop()
                     .into(holder.itemImage);
-        }
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
+            }
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MyStoreItem.class);
                 intent.putExtra("ItemName",storeItemDetail.getItemName());

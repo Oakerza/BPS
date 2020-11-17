@@ -18,13 +18,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.squareup.picasso.Picasso;
+
 public class foundStoreItem extends AppCompatActivity {
 
     private ImageView itemImage;
     private TextView itemName, itemPrice, cost;
     private EditText editTextPics;
     private static int pics = 1;
-    private static Double price, totalCost;
+    private static int price, totalCost;
     private Button picsUp, picsDown;
     private Toolbar toolbar;
 
@@ -35,15 +37,25 @@ public class foundStoreItem extends AppCompatActivity {
 
         Intent intent = getIntent();
         String stringName = intent.getExtras().getString("ItemName");
-        price = intent.getExtras().getDouble("ItemPrice");
-        int imageUrl = intent.getExtras().getInt("ItemImageUrl");
+        price = intent.getExtras().getInt("ItemPrice");
+        String imageUrl = intent.getExtras().getString("ItemImageUrl");
 
         itemImage = findViewById(R.id.foundStoreItem_image);
-        itemImage.setImageResource(imageUrl);
+        if(imageUrl == null){
+            itemImage.setImageResource(R.mipmap.ic_launcher);
+        }else {
+            Picasso.with(foundStoreItem.this)
+                    .load(imageUrl)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .fit()
+                    .centerCrop()
+                    .into(itemImage);
+        }
+
         itemName = findViewById(R.id.foundStoreItem_text_name);
         itemName.setText(stringName);
         itemPrice = findViewById(R.id.foundStoreItem_text_price);
-        itemPrice.setText(price.toString());
+        itemPrice.setText(String.valueOf(price));
 
         toolbar = findViewById(R.id.foundStoreItem_toolbar);
         setSupportActionBar(toolbar);
@@ -105,7 +117,7 @@ public class foundStoreItem extends AppCompatActivity {
 
     private void updateCost() {
         totalCost = pics * price;
-        String textCost = totalCost.toString();
+        String textCost = String.valueOf(totalCost);
         cost.setText(textCost);
     }
 

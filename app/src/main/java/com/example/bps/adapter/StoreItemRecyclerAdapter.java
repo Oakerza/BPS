@@ -54,6 +54,8 @@ public class StoreItemRecyclerAdapter extends RecyclerView.Adapter<StoreItemRecy
                 Intent intent = new Intent(context, MyStoreItem.class);
                 intent.putExtra("ItemName", storeItemDetail.getItemName());
                 intent.putExtra("ItemPrice", storeItemDetail.getItemPrice());
+                intent.putExtra("ItemId", storeItemDetail.getItemId());
+                intent.putExtra("ItemImageUrl", storeItemDetail.getImageUrl());
                 context.startActivity(intent);
             }
         });
