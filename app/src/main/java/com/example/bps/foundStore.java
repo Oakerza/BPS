@@ -36,6 +36,7 @@ public class foundStore extends AppCompatActivity {
         Intent intent = getIntent();
         String stringName = intent.getExtras().getString("StoreName");
         int intIconUrl = intent.getExtras().getInt("StoreIconUrl");
+        String storeId = intent.getExtras().getString("storeID");
 
         storeIcon = findViewById(R.id.foundStore_profile);
         storeIcon.setImageResource(intIconUrl);

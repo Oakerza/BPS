@@ -26,7 +26,7 @@ public class FoundStoreRecyclerAdapter extends RecyclerView
     private List<FoundStoreDetail> foundStoreDetailList;
 
     public FoundStoreRecyclerAdapter(Context context,
-                                     List<FoundStoreDetail>foundStoreDetailList){
+                                     List<FoundStoreDetail> foundStoreDetailList) {
         this.context = context;
         this.foundStoreDetailList = foundStoreDetailList;
     }
@@ -42,9 +42,9 @@ public class FoundStoreRecyclerAdapter extends RecyclerView
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
         FoundStoreDetail foundStoreDetail = foundStoreDetailList.get(position);
         holder.storeName.setText(foundStoreDetail.getStoreName());
-        if(foundStoreDetail.getImageUrl() == null) {
+        if (foundStoreDetail.getImageUrl() == null) {
             holder.storeIcon.setImageResource(R.drawable.user_image);
-        }else{
+        } else {
             Picasso.with(context)
                     .load(foundStoreDetail.getImageUrl())
                     .placeholder(R.mipmap.ic_launcher)
@@ -55,11 +55,10 @@ public class FoundStoreRecyclerAdapter extends RecyclerView
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,foundStore.class);
-                intent.putExtra("StoreName",foundStoreDetailList
-                        .get(position).getStoreName());
-                intent.putExtra("StoreIconUrl",foundStoreDetailList
-                        .get(position).getImageUrl());
+                Intent intent = new Intent(context, foundStore.class);
+                intent.putExtra("StoreName", foundStoreDetail.getStoreName());
+                intent.putExtra("StoreIconUrl", foundStoreDetail.getImageUrl());
+                intent.putExtra("storeID", foundStoreDetail.getStoreId());
                 context.startActivity(intent);
 
             }
@@ -71,7 +70,7 @@ public class FoundStoreRecyclerAdapter extends RecyclerView
         return foundStoreDetailList.size();
     }
 
-    public static final class MainViewHolder extends RecyclerView.ViewHolder{
+    public static final class MainViewHolder extends RecyclerView.ViewHolder {
 
         TextView storeName;
         ImageView storeIcon;

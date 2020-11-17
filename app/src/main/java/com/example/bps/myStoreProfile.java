@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -46,7 +47,7 @@ public class myStoreProfile extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore;
     private FirebaseStorage firebaseStorage;
     private EditText storeEmail, storeInfo, storePhone, storeAddress,
-            beaconUuid, beaconMajor, beaconMiner;
+            beaconUuid, beaconMajor, beaconMinor;
     private Uri imageUri;
     private StorageTask uploadTask;
     private ProgressBar progressBar;
@@ -67,7 +68,7 @@ public class myStoreProfile extends AppCompatActivity {
         storeAddress = findViewById(R.id.myStoreProfile_address);
         beaconUuid = findViewById(R.id.myStoreProfile_uuid);
         beaconMajor = findViewById(R.id.myStoreProfile_major);
-        beaconMiner = findViewById(R.id.myStoreProfile_miner);
+        beaconMinor = findViewById(R.id.myStoreProfile_miner);
         progressBar =findViewById(R.id.myStoreProfile_progressBar);
         buttonUpdate = findViewById(R.id.myStoreProfile_button_update);
 
@@ -96,7 +97,6 @@ public class myStoreProfile extends AppCompatActivity {
                             .fit()
                             .centerCrop()
                             .into(storeIcon);
-                    ;
                 } else {
                     storeIcon.setImageResource(R.drawable.user_image);
                 }
@@ -126,14 +126,14 @@ public class myStoreProfile extends AppCompatActivity {
                     beaconUuid.setText("");
                 }
                 if (userProfile.getMajor() != null) {
-                    beaconMajor.setText(userProfile.getMajor().get(0));
+                    beaconMajor.setText(String.valueOf(userProfile.getMajor().get(0)));
                 } else {
                     beaconMajor.setText("");
                 }
-                if (userProfile.getMiner() != null) {
-                    beaconMiner.setText(userProfile.getMiner().get(0));
+                if (userProfile.getMinor() != null) {
+                    beaconMinor.setText(String.valueOf(userProfile.getMinor().get(0)));
                 } else {
-                    beaconMiner.setText("");
+                    beaconMinor.setText("");
                 }
             }
         });
@@ -192,10 +192,10 @@ public class myStoreProfile extends AppCompatActivity {
                                     List<Integer> majors = new ArrayList<>();
                                     majors.add(Integer.parseInt(beaconMajor.getText().toString()));
                                     List<Integer> miners = new ArrayList<>();
-                                    miners.add(Integer.parseInt(beaconMiner.getText().toString()));
+                                    miners.add(Integer.parseInt(beaconMinor.getText().toString()));
                                     currentUserProfile.setUuid(uuids);
                                     currentUserProfile.setMajor(majors);
-                                    currentUserProfile.setMiner(miners);
+                                    currentUserProfile.setMinor(miners);
                                     documentReference.set(currentUserProfile)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
@@ -227,11 +227,11 @@ public class myStoreProfile extends AppCompatActivity {
             uuids.add(beaconUuid.getText().toString());
             List<Integer> majors = new ArrayList<>();
             majors.add(Integer.parseInt(beaconMajor.getText().toString()));
-            List<Integer> miners = new ArrayList<>();
-            miners.add(Integer.parseInt(beaconMiner.getText().toString()));
+            List<Integer> minors = new ArrayList<>();
+            minors.add(Integer.parseInt(beaconMinor.getText().toString()));
             currentUserProfile.setUuid(uuids);
             currentUserProfile.setMajor(majors);
-            currentUserProfile.setMiner(miners);
+            currentUserProfile.setMinor(minors);
             documentReference.set(currentUserProfile)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

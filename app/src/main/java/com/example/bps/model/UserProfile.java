@@ -9,7 +9,7 @@ public class UserProfile {
     private String iconUrl;
     private List<String> uuid;
     private List<Integer> major;
-    private List<Integer> miner;
+    private List<Integer> minor;
     private String detail;
     private String phone;
     private String address;
@@ -71,12 +71,12 @@ public class UserProfile {
         this.major = major;
     }
 
-    public List<Integer> getMiner() {
-        return miner;
+    public List<Integer> getMinor() {
+        return minor;
     }
 
-    public void setMiner(List<Integer> miner) {
-        this.miner = miner;
+    public void setMinor(List<Integer> minor) {
+        this.minor = minor;
     }
 
     public String getDetail() {

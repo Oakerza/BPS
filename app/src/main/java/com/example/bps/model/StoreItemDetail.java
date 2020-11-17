@@ -5,6 +5,7 @@ public class StoreItemDetail {
     String itemName;
     int itemPrice;
     String itemInfo;
+    String storeId;
     String itemId;
     String imageUrl;
 
@@ -32,6 +33,14 @@ public class StoreItemDetail {
 
     public void setItemPrice(int itemPrice) {
         this.itemPrice = itemPrice;
+    }
+
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
     }
 
     public String getItemId() {

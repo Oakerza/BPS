@@ -2,17 +2,21 @@ package com.example.bps;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bps.adapter.FoundStoreRecyclerAdapter;
 import com.example.bps.model.FoundStoreDetail;
@@ -31,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     private CollectionReference collectionReference;
+    private int first = 0, second = 0;
+    private ProgressBar progressBar;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,18 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
+        progressBar = findViewById(R.id.progress_bar_refresh);
+        swipeRefreshLayout = findViewById(R.id.main_swipe_refresh);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.d("refresh",App.foundStoreDetailList.toString());
+                foundStoreRecyclerAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         collectionReference = FirebaseFirestore.getInstance().collection("users");
 
     }
@@ -47,12 +66,46 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-    }
-
-    private void showStore() {
         setFoundStoreRecycler(App.foundStoreDetailList);
+        foundStoreRecyclerAdapter.notifyDataSetChanged();
+        progressBar.setVisibility(View.VISIBLE);
+        content();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        progressBar.setVisibility(View.VISIBLE);
+        content();
+    }
+
+    private void content() {
+        second = first;
+        first = App.foundStoreDetailList.size();
+
+        if (first == 0){
+            progressBar.setVisibility(View.VISIBLE);
+        }else if (second != first){
+            progressBar.setVisibility(View.INVISIBLE);
+            foundStoreRecyclerAdapter.notifyDataSetChanged();
+        }else{
+            progressBar.setVisibility(View.INVISIBLE);
+        }
+        refresh(5000);
+    }
+
+    private void refresh(int milliseconds) {
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                content();
+            }
+        };
+
+        handler.postDelayed(runnable, milliseconds);
+    }
+
 
     private void setFoundStoreRecycler(List<FoundStoreDetail> foundStoreDetailList) {
         foundStoreRecycler = findViewById(R.id.main_recycle_view);
@@ -86,8 +139,9 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.main_toolbar_reFresh:
+            case R.id.main_login_toolbar_reFresh:
                 Log.d("refresh","refresh");
-                showStore();
+                restartMainActivity();
                 return true;
             case R.id.main_toolbar_category:
                 return false;
@@ -108,5 +162,12 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void restartMainActivity() {
+        App.beaconInfoList.clear();
+        App.beaconList.clear();
+        App.foundStoreDetailList.clear();
+        foundStoreRecyclerAdapter.notifyDataSetChanged();
     }
 }

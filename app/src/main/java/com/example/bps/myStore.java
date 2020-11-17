@@ -34,6 +34,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,6 @@ public class myStore extends AppCompatActivity {
         textViewUserName = findViewById(R.id.myStore_text_userName);
         textViewEmail = findViewById(R.id.myStore_text_detail);
         userImage = findViewById(R.id.myStore_profile);
-        userImage.setImageResource(R.drawable.user_image);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -111,6 +111,16 @@ public class myStore extends AppCompatActivity {
                 if (userProfile.getEmail() == null) {
                     userProfile.setEmail("-");
 
+                }
+                if (userProfile.getIconUrl() == null){
+                    userImage.setImageResource(R.drawable.user_image);
+                }else {
+                    Picasso.with(myStore.this)
+                            .load(userProfile.getIconUrl())
+                            .placeholder(R.mipmap.ic_launcher)
+                            .fit()
+                            .centerCrop()
+                            .into(userImage);
                 }
                 textViewUserName.setText(userProfile.getUserName());
                 textViewEmail.setText(userProfile.getEmail());

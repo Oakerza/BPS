@@ -4,12 +4,12 @@ import java.util.UUID;
 
 public class BeaconInfo {
     private UUID uuid;
-    private int major, miner;
+    private int major, minor;
 
-    public BeaconInfo(UUID uuid, int major, int miner) {
+    public BeaconInfo(UUID uuid, int major, int minor) {
         this.uuid = uuid;
         this.major = major;
-        this.miner = miner;
+        this.minor = minor;
     }
 
     public UUID getUuid() {
@@ -28,12 +28,12 @@ public class BeaconInfo {
         this.major = major;
     }
 
-    public int getMiner() {
-        return miner;
+    public int getMinor() {
+        return minor;
     }
 
-    public void setMiner(int miner) {
-        this.miner = miner;
+    public void setMinor(int minor) {
+        this.minor = minor;
     }
 
 }
