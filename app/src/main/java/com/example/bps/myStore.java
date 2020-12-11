@@ -130,7 +130,7 @@ public class myStore extends AppCompatActivity {
 
     private void setItemRecycler(List<StoreItemDetail> storeItemDetails) {
         myStoreItemRecycler = findViewById(R.id.myStore_recycler);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
         myStoreItemRecycler.setLayoutManager(layoutManager);
         adapter = new MyStoreItemRecyclerAdapter(this, storeItemDetails);
         myStoreItemRecycler.setAdapter(adapter);
@@ -163,6 +163,9 @@ public class myStore extends AppCompatActivity {
                 startActivity(intent);
                 return false;
             case R.id.myShop_toolbar_aboutApp:
+                intent = new Intent(this,About_this_app.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 return false;
             case R.id.myShop_toolbar_logout:
                 SignOut();

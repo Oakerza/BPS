@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_signin"
     tools:context=".register">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-86dp"
+        tools:layout_editor_absoluteY="-191dp">
 
         <TextView
             android:id="@+id/reg_text_title"
@@ -16,9 +19,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="60dp"
+            android:fontFamily="@font/thsarabunnew"
             android:text="ลงทะเบียน"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textSize="43dp"
             android:textStyle="bold" />
 
         <TextView
@@ -28,24 +33,28 @@
             android:layout_below="@+id/reg_text_title"
             android:layout_alignEnd="@+id/reg_text_password2"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="71dp"
+            android:layout_marginEnd="19dp"
+            android:fontFamily="@font/thsarabunnew"
             android:text="ชื่อผู้ใช้"
-            android:textSize="25sp" />
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
         <EditText
             android:id="@+id/reg_editText_user"
-            android:layout_width="310dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/reg_text_title"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="14dp"
             android:layout_toEndOf="@+id/reg_text_user"
+            android:fontFamily="@font/thsarabunnew"
             android:hint="ร้านค้าขายดี"
-            android:textSize="20sp" />
+            android:textSize="27dp" />
 
         <TextView
             android:id="@+id/reg_text_email"
@@ -54,11 +63,14 @@
             android:layout_below="@+id/reg_text_user"
             android:layout_alignEnd="@+id/reg_text_password2"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="18dp"
+            android:fontFamily="@font/thsarabunnew"
             android:text="E-mail"
-            android:textSize="25sp" />
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
         <EditText
             android:id="@+id/reg_editText_email"
@@ -72,20 +84,22 @@
             android:layout_toEndOf="@+id/reg_text_email"
             android:hint="mystore@beacon.com"
             android:inputType="textEmailAddress"
-            android:textSize="20sp" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/reg_text_password1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/reg_text_email"
-            android:layout_alignParentStart="true"
             android:layout_alignEnd="@+id/reg_text_password2"
-
+            android:layout_alignParentStart="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="34dp"
+            android:fontFamily="@font/thsarabunnew"
             android:text="รหัสผ่าน"
-            android:textSize="18sp" />
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
         <EditText
             android:id="@+id/reg_editText_password1"
@@ -97,9 +111,10 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@+id/reg_text_password1"
-            android:hint="00000000"
+            android:fontFamily="@font/thsarabunnew"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:textSize="18sp" />
+            android:textSize="27dp" />
 
         <TextView
             android:id="@+id/reg_text_password2"
@@ -109,8 +124,11 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="34dp"
+            android:fontFamily="@font/thsarabunnew"
             android:text="ยืนยันรหัสผ่าน"
-            android:textSize="18sp" />
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
         <EditText
             android:id="@+id/reg_editText_password2"
@@ -122,9 +140,12 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@+id/reg_text_password2"
-            android:hint="00000000"
+            android:fontFamily="@font/thsarabunnew"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:textSize="18sp" />
+            android:textColor="@color/white"
+            android:textSize="27dp" />
+
 
         <Button
             android:id="@+id/reg_button_register"
@@ -133,11 +154,15 @@
             android:layout_above="@+id/reg_text_login"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/btn_login"
+            android:fontFamily="@font/thsarabunnew"
             android:text="ลงทะเบียน"
-            android:textSize="25sp" />
+            android:textColor="@color/white"
+            android:textSize="35dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/reg_text_login"
@@ -146,12 +171,14 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="20dp"
-            android:text="มีบัญชีผู้ใช้แล้ว"
+            android:layout_marginStart="-3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/thsarabunnew"
+            android:text="มีบัญชีผู้ใช้แล้ว? เข้าสู่ระบบ"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textColor="@color/black"
+            android:textSize="26dp" />
 
     </RelativeLayout>
 

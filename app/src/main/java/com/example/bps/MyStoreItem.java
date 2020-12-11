@@ -348,6 +348,9 @@ public class MyStoreItem extends AppCompatActivity {
             case R.id.myshop_item_edit_shop:
                 return false;
             case R.id.myshop_item_aboutapp:
+                intent = new Intent(this,About_this_app.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 return false;
             default:
                 return super.onOptionsItemSelected(item);

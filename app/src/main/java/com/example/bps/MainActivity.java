@@ -158,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.main_toolbar_settings:
                 return false;
             case R.id.main_toolbar_about:
+                intent = new Intent(this,About_this_app.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 return false;
             default:
                 return super.onOptionsItemSelected(item);

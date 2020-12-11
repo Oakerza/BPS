@@ -69,7 +69,7 @@ public class myStoreProfile extends AppCompatActivity {
         beaconUuid = findViewById(R.id.myStoreProfile_uuid);
         beaconMajor = findViewById(R.id.myStoreProfile_major);
         beaconMinor = findViewById(R.id.myStoreProfile_miner);
-        progressBar =findViewById(R.id.myStoreProfile_progressBar);
+        progressBar = findViewById(R.id.myStoreProfile_progressBar);
         buttonUpdate = findViewById(R.id.myStoreProfile_button_update);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -151,7 +151,7 @@ public class myStoreProfile extends AppCompatActivity {
                 if (uploadTask != null && uploadTask.isInProgress()) {
                     Toast.makeText(myStoreProfile.this, "กำลังบันทึก", Toast.LENGTH_SHORT).show();
                 } else {
-                        updateItem();
+                    updateItem();
                 }
 
             }
@@ -161,7 +161,7 @@ public class myStoreProfile extends AppCompatActivity {
 
     private void updateItem() {
         if (imageUri != null) {
-            if(oldIconUrl != null){
+            if (oldIconUrl != null) {
                 firebaseStorage.getReferenceFromUrl(oldIconUrl).delete();
             }
             StorageReference storageReference = firebaseStorage.getReference().child("users/images/icons/" +
@@ -216,7 +216,7 @@ public class myStoreProfile extends AppCompatActivity {
                             progressBar.setProgress((int) progress);
                         }
                     });
-        }else{
+        } else {
             UserProfile currentUserProfile = new UserProfile();
             currentUserProfile.setUserName(storeName.getText().toString());
             currentUserProfile.setEmail(storeEmail.getText().toString());

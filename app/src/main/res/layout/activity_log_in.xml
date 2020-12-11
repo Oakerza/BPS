@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".logIn"
-    android:background="@drawable/back_signin">
+    android:background="@drawable/back_signin"
+    tools:context=".logIn">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,12 +21,15 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="-2dp"
+            android:layout_marginTop="143dp"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/thsarabunnew"
             android:text="ลงชื่อเข้าใช้"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textSize="40dp"
             android:textStyle="bold" />
-
 
         <ImageView
             android:id="@+id/login_button_google"
@@ -34,8 +37,10 @@
             android:layout_height="60dp"
             android:layout_above="@+id/login_text_or"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginStart="112dp"
+            android:layout_marginEnd="62dp"
+            android:layout_marginBottom="34dp"
+            android:layout_toStartOf="@+id/login_button_facebook"
             android:src="@drawable/google_icon" />
 
         <ImageView
@@ -44,8 +49,8 @@
             android:layout_height="60dp"
             android:layout_above="@+id/login_text_or"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="112dp"
+            android:layout_marginBottom="34dp"
             android:src="@drawable/facebook_icon" />
 
         <TextView
@@ -55,61 +60,54 @@
             android:layout_above="@+id/login_editText_email"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="20dp"
-            android:text="หรือลงชื่อเข้าใช้ด้วย E-mail"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/thsarabunnew"
+            android:text="ลงชื่อเข้าใช้ด้วย E-mail"
             android:textAlignment="center"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/login_text_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/login_editText_password"
-            android:layout_alignEnd="@+id/login_text_password"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="7dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="20dp"
-            android:text="E-mail"
-            android:textSize="20sp" />
+            android:textColor="@color/black"
+            android:textSize="32dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/login_editText_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/login_editText_password"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/login_text_email"
-            android:hint="E-mail"
-            android:inputType="textEmailAddress"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/login_text_password"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/login_button_login"
+            android:layout_height="50dp"
+            android:layout_above="@+id/login_editText_password"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="30dp"
-            android:text="รหัสผ่าน"
-            android:textSize="20sp" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_text_email"
+            android:drawableLeft="@drawable/ic_users"
+            android:drawablePadding="15dp"
+            android:hint="@string/users"
+            android:textColorHint="@color/gray"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/login_editText_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:layout_above="@+id/login_button_login"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/login_text_password"
-            android:hint="00000000"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/edit_text_email"
+            android:drawableLeft="@drawable/ic_password"
+            android:drawablePadding="10dp"
+            android:hint="@string/password"
+            android:textColorHint="@color/gray"
             android:inputType="textPassword"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
             android:textSize="18sp" />
 
         <Button
@@ -119,24 +117,27 @@
             android:layout_above="@+id/login_text_reg"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_login"
+            android:fontFamily="@font/thsarabunnew"
             android:text="เข้าสู่ระบบ"
-            android:textSize="25sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="32dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/login_text_reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            android:text="ยังไม่มีบัญชีผู้ใช้"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/thsarabunnew"
+            android:text="ไม่มีบัญชีผู้ใช้งาน? สมัครที่นี่"
             android:textAlignment="center"
-            android:textSize="18sp" />
-
-
-
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
 
     </RelativeLayout>

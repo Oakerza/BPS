@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".foundStore">
+    tools:context=".foundStore"
+    android:background="@drawable/back_signin">
 
     <RelativeLayout
         android:layout_width="match_parent"

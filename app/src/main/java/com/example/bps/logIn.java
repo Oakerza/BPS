@@ -2,6 +2,7 @@ package com.example.bps;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -73,6 +74,7 @@ public class logIn extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
+     /*   this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);*/
 
         toolbar = findViewById(R.id.login_toolbar);
         setSupportActionBar(toolbar);

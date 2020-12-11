@@ -3,12 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/back_signin"
     tools:context=".myCart">
-
-    <include
-        android:id="@+id/myCart_toolbar"
-        layout="@layout/toolbar" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,8 +28,9 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/thsarabunnew"
             android:text="ราคารวม"
-            android:textSize="20sp" />
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/foundStoreItem_text_cost"
@@ -44,9 +42,10 @@
             android:layout_marginBottom="10dp"
             android:layout_toStartOf="@+id/foundStoreItem_text5"
             android:layout_toEndOf="@+id/foundStoreItem_text4"
+            android:fontFamily="@font/thsarabunnew"
             android:text="0.00"
             android:textAlignment="textEnd"
-            android:textSize="20sp" />
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/foundStoreItem_text5"
@@ -56,18 +55,28 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/thsarabunnew"
             android:text="บาท"
-            android:textSize="20sp" />
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/foundStoreItem_button_buyNow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_login"
+            android:fontFamily="@font/thsarabunnew"
             android:text="ซื้อตอนนี้"
-            android:textSize="20sp" />
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"/>
+
 
     </RelativeLayout>
+    <include
+        android:id="@+id/myCart_toolbar"
+        layout="@layout/toolbar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

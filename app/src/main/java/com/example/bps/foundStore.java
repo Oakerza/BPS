@@ -126,7 +126,7 @@ public class foundStore extends AppCompatActivity {
 
     private void setItemRecycler(List<StoreItemDetail> storeItemDetails) {
         foundStoreItemRecycler = findViewById(R.id.foundStore_recycler);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,3);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
         foundStoreItemRecycler.setLayoutManager(layoutManager);
         adapter = new StoreItemRecyclerAdapter(this,storeItemDetails);
         foundStoreItemRecycler.setAdapter(adapter);
@@ -160,7 +160,11 @@ public class foundStore extends AppCompatActivity {
                 startActivity(intent);
                 return false;
             case R.id.found_shop_aboutapp:
+                intent = new Intent(this,About_this_app.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 return false;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

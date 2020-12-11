@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/myStoreProfile_cardView">
+    android:layout_height="wrap_content">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/myStoreProfile_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/myStoreProfile_card_topic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="หัวข้อ"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_margin="5dp"/>
+            android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/myStoreProfile_card_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/myStoreProfile_card_topic"
-            android:layout_margin="5dp"
-            android:hint="รายละเอียด"
-            android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/myStoreProfile_card_topic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="หัวข้อ"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-    </RelativeLayout>
+            <EditText
+                android:id="@+id/myStoreProfile_card_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/myStoreProfile_card_topic"
+                android:layout_margin="5dp"
+                android:hint="รายละเอียด"
+                android:textSize="18sp" />
 
-</androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

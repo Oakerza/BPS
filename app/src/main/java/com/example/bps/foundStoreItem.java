@@ -148,6 +148,9 @@ public class foundStoreItem extends AppCompatActivity {
                 startActivity(intent);
                 return false;
             case R.id.found_shop_item_aboutapp:
+                intent = new Intent(this,About_this_app.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 return false;
             default:
                 return super.onOptionsItemSelected(item);

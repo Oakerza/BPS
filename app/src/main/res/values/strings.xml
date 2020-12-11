@@ -2,4 +2,6 @@
     <string name="app_name">BPS</string>
     <string name="facebook_app_id">1268494050153673</string>
     <string name="fb_login_protocol_scheme">fb1268494050153673</string>
+    <string name="users">E-mail</string>
+    <string name="password">รหัสผ่าน</string>
 </resources>
