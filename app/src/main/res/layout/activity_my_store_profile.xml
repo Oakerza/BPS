@@ -179,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:fontFamily="@font/thsarabunnew"
-                        android:text="uuid"
+                        android:text="UUID"
                         android:textSize="30dp"
                         android:textStyle="bold" />
 
@@ -204,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:fontFamily="@font/thsarabunnew"
-                        android:text="major"
+                        android:text="Major"
                         android:textSize="28dp"
                         android:textStyle="bold" />
 
@@ -221,7 +221,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:fontFamily="@font/thsarabunnew"
-                        android:text="miner"
+                        android:text="Miner"
                         android:textSize="28dp"
                         android:textStyle="bold" />
 
