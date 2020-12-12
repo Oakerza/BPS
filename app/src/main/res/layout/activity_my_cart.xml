@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/foundStoreItem_text_cost"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginTop="56dp"
+            android:layout_marginBottom="0dp" />
 
         <TextView
             android:id="@+id/foundStoreItem_text4"
@@ -59,21 +59,25 @@
             android:text="บาท"
             android:textSize="30dp" />
 
+
         <Button
             android:id="@+id/foundStoreItem_button_buyNow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="25dp"
             android:background="@drawable/btn_login"
             android:fontFamily="@font/thsarabunnew"
+            android:layout_margin="10dp"
             android:text="ซื้อตอนนี้"
             android:textColor="@color/white"
             android:textSize="30dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
+
     <include
         android:id="@+id/myCart_toolbar"
         layout="@layout/toolbar" />

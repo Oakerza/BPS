@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyStoreItem"
-    android:background="@drawable/back_signin">
+    android:background="@drawable/back_signin"
+    tools:context=".MyStoreItem">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,8 +28,11 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="0dp"
+            android:fontFamily="@font/thsarabunnew"
             android:text="เปลี่ยนรูปภาพ"
-            android:textSize="16sp"/>
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/myStoreItem_editText_name"
@@ -41,7 +44,10 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="0dp"
             android:layout_toEndOf="@+id/myStoreItem_image"
-            android:hint="ชื่อสินค้า"/>
+            android:fontFamily="@font/thsarabunnew"
+            android:hint="ชื่อสินค้า"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/myStoreItem_text_price"
@@ -49,19 +55,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/myStoreItem_image"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="30dp"
-            android:textSize="20sp"
-            android:text="ราคา" />
+            android:layout_marginStart="201dp"
+            android:layout_marginTop="39dp"
+            android:fontFamily="@font/thsarabunnew"
+            android:text="ราคา"
+            android:textSize="30dp" />
 
         <EditText
             android:id="@+id/myStoreItem_editText_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/myStoreItem_text_price"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="-12dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="-6dp"
             android:layout_toStartOf="@+id/myStoreItem_text_unit"
             android:layout_toEndOf="@+id/myStoreItem_text_price"
             android:hint="0"
@@ -75,10 +82,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/myStoreItem_image"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:textSize="20sp"
-            android:text="บาท"/>
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="17dp"
+            android:fontFamily="@font/thsarabunnew"
+            android:text="บาท"
+            android:textSize="30dp" />
 
         <EditText
             android:id="@+id/myStoreItem_editText_detail"
@@ -90,8 +98,11 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
+            android:fontFamily="@font/thsarabunnew"
             android:hint="รายละเอียด"
-            android:textSize="18sp"/>
+            android:textColorHint="@color/gray"
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
         <ProgressBar
             android:id="@+id/myStoreItem_progressBar"
@@ -110,11 +121,15 @@
             android:layout_above="@+id/myStoreItem_button_delete"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:text="บันทึกการเปลี่ยนแปลง"
-            android:textSize="20sp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_login"
+            android:fontFamily="@font/thsarabunnew"
+            android:text="บันทึกการเปลี่ยนแปลง"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/myStoreItem_button_delete"
@@ -123,11 +138,15 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:text="ลบสินค้า"
-            android:textSize="20sp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_login"
+            android:fontFamily="@font/thsarabunnew"
+            android:text="ลบสินค้า"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

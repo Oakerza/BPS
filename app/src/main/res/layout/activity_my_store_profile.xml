@@ -39,9 +39,12 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="0dp"
             android:layout_toEndOf="@+id/myStoreProfile_icon"
-            android:hint="my store"
+            android:fontFamily="@font/thsarabunnew"
+            android:hint="My store"
             android:textAlignment="center"
-            android:textSize="25sp"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <LinearLayout

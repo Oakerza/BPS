@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myAccount"
-    android:background="@drawable/back_signin">
+    android:background="@drawable/back_signin"
+    tools:context=".myAccount">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,8 +16,8 @@
         <ImageView
             android:id="@+id/myAccount_background"
             android:layout_width="match_parent"
-            android:background="@color/colorPrimary"
-            android:layout_height="120dp" />
+            android:layout_height="120dp"
+            android:background="@color/colorPrimary" />
 
         <ImageView
             android:id="@+id/myAccount_icon"
@@ -26,7 +26,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="60dp"/>
+            android:layout_marginTop="60dp" />
 
         <EditText
             android:id="@+id/myAccount_name"
@@ -40,9 +40,10 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="27dp"
             android:layout_toEndOf="@+id/myAccount_icon"
+            android:fontFamily="@font/thsarabunnew"
             android:hint="my store"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -62,7 +63,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="5dp"
-            android:text="บันทึกการเปลียนแปลง"/>
+            android:background="@drawable/btn_login"
+            android:fontFamily="@font/thsarabunnew"
+            android:text="บันทึกการเปลียนแปลง"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_margin="10dp"/>
 
     </RelativeLayout>
 
