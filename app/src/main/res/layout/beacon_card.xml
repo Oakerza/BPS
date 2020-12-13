@@ -20,10 +20,12 @@
                 android:id="@+id/beacon_card_nameTopic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/thsarabunnew"
                 android:text="ชื่อบีคอน"
-                android:textSize="18sp"
+                android:textSize="22dp"
                 android:textStyle="bold" />
 
             <EditText
@@ -32,8 +34,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_toEndOf="@+id/beacon_card_nameTopic"
+                android:fontFamily="@font/thsarabunnew"
                 android:hint="ชื่อบีคอน"
-                android:textSize="16sp" />
+                android:textSize="22dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/beacon_card_uuidTopic"
@@ -44,8 +48,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:fontFamily="@font/thsarabunnew"
                 android:text="UUID"
-                android:textSize="16sp"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <EditText
@@ -55,8 +60,9 @@
                 android:layout_below="@+id/beacon_card_nameDetail"
                 android:layout_margin="5dp"
                 android:layout_toEndOf="@+id/beacon_card_uuidTopic"
+                android:fontFamily="@font/thsarabunnew"
                 android:hint="UUID"
-                android:textSize="14sp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/beacon_card_majorTopic"
@@ -64,11 +70,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/beacon_card_uuidDetail"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:fontFamily="@font/thsarabunnew"
                 android:text="Major"
-                android:textSize="16sp"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <EditText
@@ -82,8 +89,10 @@
                 android:layout_marginEnd="62dp"
                 android:layout_marginBottom="5dp"
                 android:layout_toStartOf="@+id/beacon_card_minerDetail"
+                android:fontFamily="@font/thsarabunnew"
                 android:hint="Major"
-                android:textSize="14sp" />
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/beacon_card_minerTopic"
@@ -91,12 +100,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/beacon_card_uuidDetail"
                 android:layout_marginStart="150dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_toEndOf="@+id/beacon_card_majorTopic"
+                android:fontFamily="@font/thsarabunnew"
                 android:text="Miner"
-                android:textSize="18sp"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <EditText
@@ -110,8 +120,10 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_toEndOf="@+id/beacon_card_minerTopic"
+                android:fontFamily="@font/thsarabunnew"
                 android:hint="Miner"
-                android:textSize="14sp" />
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/beacon_card_button"
@@ -123,8 +135,10 @@
                 android:layout_marginStart="140dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="140dp"
+                android:fontFamily="@font/thsarabunnew"
                 android:text="ลบบีคอน"
-                android:textSize="18sp"
+                android:textSize="23dp"
+                android:background="@drawable/btn_activity_mystore"
                 android:textStyle="bold" />
 
         </RelativeLayout>

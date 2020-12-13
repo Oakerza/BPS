@@ -23,8 +23,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:fontFamily="@font/thsarabunnew"
                 android:text="หัวข้อ"
-                android:textSize="20sp"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <EditText
@@ -34,7 +35,8 @@
                 android:layout_below="@+id/myStoreProfile_card_topic"
                 android:layout_margin="5dp"
                 android:hint="รายละเอียด"
-                android:textSize="18sp" />
+                android:fontFamily="@font/thsarabunnew"
+                android:textSize="22dp" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
